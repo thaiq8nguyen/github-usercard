@@ -1,3 +1,50 @@
+import React, { useState, useEffect } from 'react'
+
+
+const GitHubCard = ({avatar, name, login, bio, location, blog, following, followers}) => {
+
+  
+
+  
+  return (
+    <div className="card">
+      <div className="card-content">
+        <div className="media">
+          <div className="media-left">
+            <img src={avatar} alt="" width="230" height="230"/>
+          </div>
+          <div className="media-content">
+            <div className="content">
+              <h3 className="title">{name}</h3>
+
+              <p className="subtitle has-text-grey-light">{login}</p>
+              <p>{bio}</p>
+              <div className="columns">
+                <div className="column is-half">
+                  <p className="has-text-grey">Location</p>
+                  <p className="has-text-grey">Web</p>
+                </div>
+                <div className="column is-half">
+                  <p>{location}</p>
+                  <a href={blog}>{blog}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <footer className="card-footer">
+        <p className="card-footer-item">Following: {following}</p>
+        <p className="card-footer-item">Followers: {followers}</p>
+      </footer>
+    </div>
+  )
+}
+
+export default GitHubCard
+
+
 /* Step 1: using axios, send a GET request to the following URL 
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
