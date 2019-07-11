@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 
 const GitHubCard = ({avatar, name, login, bio, location, blog, following, followers}) => {
-
-  
-
   
   return (
     <div className="card">
@@ -16,13 +13,12 @@ const GitHubCard = ({avatar, name, login, bio, location, blog, following, follow
           <div className="media-content">
             <div className="content">
               <h3 className="title">{name}</h3>
-
               <p className="subtitle has-text-grey-light">{login}</p>
-              <p>{bio}</p>
+              <p>{bio ? bio:""}</p>
               <div className="columns">
-                <div className="column is-half">
-                  <p className="has-text-grey">Location</p>
-                  <p className="has-text-grey">Web</p>
+                <div className="column is-one-quarter">
+                  <p className="has-text-grey">{location ? "Location": null}</p>
+                  <p className="has-text-grey">{blog ? "Blog": null}</p>
                 </div>
                 <div className="column is-half">
                   <p>{location}</p>

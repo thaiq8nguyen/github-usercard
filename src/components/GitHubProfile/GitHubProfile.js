@@ -1,16 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import GitHubAPI from "../../utils/GitHubAPI";
+
 import GitHubCard from "../GitHubCard/GitHubCard";
 import FollowerList from "../FollowerList/FollowerList";
-const GitHubProfile = () => {
-    const [user, setUser] = useState("")
-    useEffect(() => {
+const GitHubProfile = ({user}) => {
     
-        GitHubAPI.getUser("thaiq8nguyen")
-        .then((response) => {
-          setUser(response.data)
-        })
-      }, [])
     return (
         <div className="section">
             <div className="columns">
@@ -27,7 +20,16 @@ const GitHubProfile = () => {
                     />
                 </div>
                 <div className="column">
-                    <FollowerList/>
+                    {
+                        user.login 
+                        ? <FollowerList handle={user.login}/>
+                        : <div className="card">
+                            <div className="card-content">
+                                <p>The GitHub's user does not have any followers</p>
+                            </div>
+                        </div>
+                    }
+                    
                 </div>
             </div>
         </div>

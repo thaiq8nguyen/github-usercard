@@ -2,29 +2,30 @@ import React, { useState, useEffect } from 'react'
 import GitHubAPI from "../../utils/GitHubAPI";
 import GitHubCard from "../GitHubCard/GitHubCard";
 
-const FollowerList = () => {
+const FollowerList = ({handle}) => {
+    
     const [followers, setFollowers] = useState([]);
     const [user, setUser] = useState("");
     const [showModal, setModal] = useState(false);
 
     useEffect(() => {
     
-        GitHubAPI.getFollowers("thaiq8nguyen")
+        GitHubAPI.getFollowers(handle)
         .then((response) => {
           setFollowers(response.data);
+          
         })
         .catch(error => {
             console.log(error);
         })
-      }, [])
+      },[handle])
     
     
     const getUser = (username) => {
-        console.log(username);
+        
         GitHubAPI.getUser(username)
         .then((response) => {
             setUser(response.data);
-            console.log(response.data)
             setModal(true)
         })
         .catch(error => {
@@ -33,7 +34,6 @@ const FollowerList = () => {
     }
 
     const closeModal = () => {
-        console.log("close")
         setUser("")
         setModal(false)
     }
